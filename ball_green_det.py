@@ -19,5 +19,5 @@ def ball_green_det(img):
         ((x, y), radius) = cv2.minEnclosingCircle(c)
         center = (int(x), int(y))
 
-    return center, mask
+    return center
     
