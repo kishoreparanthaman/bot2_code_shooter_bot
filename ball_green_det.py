@@ -1,10 +1,9 @@
 import cv2
-import imutils
 
 green_l = (29, 86, 6)
 green_u = (64, 255, 255)
 
-def ball_det(img):
+def ball_green_det(img):
 
     blur = cv2.GaussianBlur(img, (7, 7), 0)
     hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
@@ -12,8 +11,7 @@ def ball_det(img):
     cv2.erode(mask, None, iterations=2)
     cv2.dilate(mask, None, iterations=2)
 
-    cnt, hier = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    cnt = imutils.grab_contours(cnt)
+    cnt, _ = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     center = None
 
     if len(cnt) > 0:
@@ -21,5 +19,5 @@ def ball_det(img):
         ((x, y), radius) = cv2.minEnclosingCircle(c)
         center = (int(x), int(y))
 
-    return center
+    return center, mask
     
