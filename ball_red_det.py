@@ -1,8 +1,7 @@
 import cv2
-import imutils
 
-red_l = (0, 0, 0)
-red_u = (255, 255, 255)
+red_l = (0, 70, 0)
+red_u = (36, 255, 255)
 
 def ball_red_det(img):
 
@@ -12,8 +11,8 @@ def ball_red_det(img):
     cv2.erode(mask, None, iterations=2)
     cv2.dilate(mask, None, iterations=2)
 
-    cnt, hier = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    cnt = imutils.grab_contours(cnt)
+    cnt, _ = cv2.findContours(
+        mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     center = None
 
     if len(cnt) > 0:
