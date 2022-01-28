@@ -11,7 +11,6 @@ import argparse
 import imutils
 from collections import deque
 
-
 tolerance=17
 X_lock=0
 Y_lock=0
